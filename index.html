@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Name</title>
+</head>
+<body>
+<h2>The Psychic Game</h2>
+	<div id="game">
+		<p>Guess the letter I'm thinking of.</p>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  	<script type="text/javascript">
+
+
+		var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+		var wins = 0;
+		var losses = 0;
+		var guesses = 10;
+		var letters
+		
+			
+	
+		document.onkeyup = function(event) {
+			var userGuess = String.fromCharCode(event.keycode).toLowerCase();
+			var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+
+			if (userGuess == computerGuess) {
+			wins++;
+			}
+			else if (userGuess != computerGuess) {
+			guesses--;
+			}
+			if(guesses === 0) {
+			losses++;
+			}
+			if(guesses == -1) {
+				guesses = 10;
+			}
+			
+
+			
+
+			var html = "<p>Guess what letter I'm thinking of:</p>" +
+			"<p>wins: " +
+			wins +
+			"</p>" +
+			"<p>Losses: " +
+			losses +
+			"</p>" +
+			"<p>Guesses Left: " +
+			guesses +
+			"</p>" +
+			"<p>Your Guesses so far: "+
+			userGuess
+			"</p>";
+
+			document.querySelector('#game').innerHTML = html;
+		}
+ 	</script>
+</body>
+</html>
